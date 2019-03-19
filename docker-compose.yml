@@ -1,0 +1,18 @@
+version: "3"
+services:
+  # Need to add a DB
+  resource_broker:
+    build: ./rbroker
+    ports:
+      - "5011:5011"
+    volumes:
+      - ./rbroker:/usr/src/app
+    environment:
+      - FLASK_DEBUG=0
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1
+      # - APP_SETTINGS=project.server.config.DevelopmentConfig
+    # command: gunicorn --worker-class eventlet -w 1 -b 0.0.0.0:5011 wsgi:app --no-sendfile
+    # depends_on:
+    #   - redis
+    #   - mosquitto
